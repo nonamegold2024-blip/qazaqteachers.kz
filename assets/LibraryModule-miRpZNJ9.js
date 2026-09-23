@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-sLPvdpSW.js";var t=e();function n(){return(0,t.jsx)(`div`,{className:`-m-4 sm:-m-6 lg:-m-8 h-[calc(100vh-4rem)]`,children:(0,t.jsx)(`iframe`,{src:`/ai-library.html`,title:`AI Кітапхана`,className:`h-full w-full border-0`})})}export{n as LibraryModule};
