@@ -1,0 +1,1 @@
+System.register(["./createLucideIcon-legacy-Dod8Dkyt.js"],function(e,y){var t;return{setters:[function(e){t=e.t}],execute:function(){e("t",t("hash",[["line",{x1:"4",x2:"20",y1:"9",y2:"9",key:"4lhtct"}],["line",{x1:"4",x2:"20",y1:"15",y2:"15",key:"vyu0kd"}],["line",{x1:"10",x2:"8",y1:"3",y2:"21",key:"1ggp8o"}],["line",{x1:"16",x2:"14",y1:"3",y2:"21",key:"weycgp"}]]))}}});

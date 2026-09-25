@@ -1,0 +1,1 @@
+System.register(["./jsx-runtime-legacy--q19JXeY.js"],function(e,r){var t,l;return e("LibraryModule",function(){return(0,l.jsx)("div",{className:"-m-4 sm:-m-6 lg:-m-8 h-[calc(100vh-4rem)]",children:(0,l.jsx)("iframe",{src:"/ai-library.html",title:"AI Кітапхана",className:"h-full w-full border-0"})})}),{setters:[function(e){t=e.t}],execute:function(){l=t()}}});
