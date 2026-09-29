@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e3a8a"/><stop offset=".55" stop-color="#312e81"/><stop offset="1" stop-color="#4c1d95"/>
+    </linearGradient>
+    <radialGradient id="g1" cx=".2" cy=".25" r=".5"><stop offset="0" stop-color="#38bdf8" stop-opacity=".55"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g2" cx=".85" cy=".3" r=".5"><stop offset="0" stop-color="#fb7185" stop-opacity=".5"/><stop offset="1" stop-color="#fb7185" stop-opacity="0"/></radialGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4ade80"/><stop offset="1" stop-color="#15803d"/></linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)"/>
+  <rect width="800" height="520" fill="url(#g1)"/>
+  <rect width="800" height="520" fill="url(#g2)"/>
+  <g font-family="Arial Black, Arial, sans-serif" font-weight="900" fill="#fff">
+    <text x="70" y="120" font-size="86" opacity=".14">+</text>
+    <text x="640" y="110" font-size="90" opacity=".14">×</text>
+    <text x="330" y="90" font-size="64" opacity=".12">÷</text>
+    <text x="700" y="250" font-size="70" opacity=".12">−</text>
+    <text x="40" y="270" font-size="54" opacity=".10">7</text>
+    <text x="560" y="190" font-size="50" opacity=".10">12</text>
+  </g>
+  <!-- VS badge -->
+  <circle cx="400" cy="190" r="46" fill="#fbbf24"/>
+  <circle cx="400" cy="190" r="58" fill="#fbbf24" opacity=".2"/>
+  <text x="400" y="207" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="44" fill="#78350f">VS</text>
+  <!-- ground -->
+  <path d="M0 380 Q200 350 400 372 T800 366 L800 520 L0 520Z" fill="url(#grass)"/>
+  <!-- rope -->
+  <line x1="120" y1="352" x2="680" y2="352" stroke="#7c4a1e" stroke-width="10" stroke-linecap="round"/>
+  <line x1="120" y1="352" x2="680" y2="352" stroke="#a16207" stroke-width="10" stroke-dasharray="10 10" opacity=".5"/>
+  <rect x="392" y="334" width="16" height="36" rx="4" fill="#ef4444"/>
+  <!-- player 1 (blue) -->
+  <g transform="translate(200 440) rotate(-12) scale(2.6)">
+    <line x1="12" y1="-22" x2="34" y2="-40" stroke="#0284c7" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="0" cy="1" rx="17" ry="4" fill="rgba(0,0,0,.2)"/>
+    <ellipse cx="-7" cy="-3" rx="6" ry="4" fill="#0284c7"/><ellipse cx="7" cy="-3" rx="6" ry="4" fill="#0284c7"/>
+    <path d="M-18 -20 C-18 -46 18 -46 18 -20 C18 -6 10 -2 0 -2 C-10 -2 -18 -6 -18 -20Z" fill="#38bdf8"/>
+    <ellipse cx="0" cy="-14" rx="10" ry="8.5" fill="#fff" opacity=".28"/>
+    <path d="M-13 -37 Q0 -49 13 -37 Q0 -41 -13 -37Z" fill="#0284c7"/><circle cx="0" cy="-43" r="1.8" fill="#fbbf24"/>
+    <circle cx="-6" cy="-28" r="4.3" fill="#fff"/><circle cx="6" cy="-28" r="4.3" fill="#fff"/>
+    <circle cx="-5" cy="-28" r="2.3" fill="#1e293b"/><circle cx="7" cy="-28" r="2.3" fill="#1e293b"/>
+    <path d="M-4 -18.5 L4 -18.5" stroke="#1e293b" stroke-width="1.7" stroke-linecap="round"/>
+  </g>
+  <!-- player 2 (rose) -->
+  <g transform="translate(600 440) rotate(12) scale(-2.6 2.6)">
+    <line x1="12" y1="-22" x2="34" y2="-40" stroke="#e11d48" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="0" cy="1" rx="17" ry="4" fill="rgba(0,0,0,.2)"/>
+    <ellipse cx="-7" cy="-3" rx="6" ry="4" fill="#e11d48"/><ellipse cx="7" cy="-3" rx="6" ry="4" fill="#e11d48"/>
+    <path d="M-18 -20 C-18 -46 18 -46 18 -20 C18 -6 10 -2 0 -2 C-10 -2 -18 -6 -18 -20Z" fill="#fb7185"/>
+    <ellipse cx="0" cy="-14" rx="10" ry="8.5" fill="#fff" opacity=".28"/>
+    <path d="M-13 -37 Q0 -49 13 -37 Q0 -41 -13 -37Z" fill="#e11d48"/><circle cx="0" cy="-43" r="1.8" fill="#fbbf24"/>
+    <circle cx="-6" cy="-28" r="4.3" fill="#fff"/><circle cx="6" cy="-28" r="4.3" fill="#fff"/>
+    <circle cx="-5" cy="-28" r="2.3" fill="#1e293b"/><circle cx="7" cy="-28" r="2.3" fill="#1e293b"/>
+    <path d="M-4 -19.5 Q0 -15.5 4 -19.5" stroke="#1e293b" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>
