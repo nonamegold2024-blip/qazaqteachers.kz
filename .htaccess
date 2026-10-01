@@ -5,6 +5,9 @@
   RewriteEngine On
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
+  # A missing build file (an old chunk after a deploy) must be a real 404 —
+  # never the HTML page: the browser can't run it and the section went white.
+  RewriteRule ^assets/ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
@@ -14,4 +17,11 @@
 <IfModule mod_rewrite.c>
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# The page itself must always be fresh: it names the current build's files.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
 </IfModule>
