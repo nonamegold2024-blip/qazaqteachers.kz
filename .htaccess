@@ -29,4 +29,6 @@
 # ES-module files must be JavaScript (Apache may not know .mjs)
 <IfModule mod_mime.c>
   AddType application/javascript .mjs
+  # the app manifest (the server sent it with no type at all)
+  AddType application/manifest+json .webmanifest
 </IfModule>
