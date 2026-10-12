@@ -1,0 +1,1 @@
+System.register(["./createLucideIcon-legacy-DQFZMyhP.js"],function(c,e){var t;return{setters:[function(c){t=c.t}],execute:function(){c("t",t("music",[["path",{d:"M9 18V5l12-2v13",key:"1jmyc2"}],["circle",{cx:"6",cy:"18",r:"3",key:"fqmcym"}],["circle",{cx:"18",cy:"16",r:"3",key:"1hluhg"}]]))}}});
