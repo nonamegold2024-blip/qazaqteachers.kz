@@ -21,7 +21,7 @@
 
 # The page itself must always be fresh: it names the current build's files.
 <IfModule mod_headers.c>
-  <FilesMatch "\.html$">
+  <FilesMatch "(\.html|sw\.js|\.webmanifest)$">
     Header set Cache-Control "no-cache, must-revalidate"
   </FilesMatch>
 </IfModule>
