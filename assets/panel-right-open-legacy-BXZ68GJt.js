@@ -1,0 +1,1 @@
+System.register(["./createLucideIcon-legacy-DQFZMyhP.js"],function(e,t){var n;return{setters:[function(e){n=e.t}],execute:function(){e("t",n("panel-right-open",[["rect",{width:"18",height:"18",x:"3",y:"3",rx:"2",key:"afitv7"}],["path",{d:"M15 3v18",key:"14nvp0"}],["path",{d:"m10 15-3-3 3-3",key:"1pgupc"}]]))}}});
