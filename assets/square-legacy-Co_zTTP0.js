@@ -1,0 +1,1 @@
+System.register(["./createLucideIcon-legacy-DQFZMyhP.js"],function(e,t){var r;return{setters:[function(e){r=e.t}],execute:function(){e("t",r("square",[["rect",{width:"18",height:"18",x:"3",y:"3",rx:"2",key:"afitv7"}]]))}}});
