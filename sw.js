@@ -1,7 +1,13 @@
 // Qazaq Teachers AI — service worker. It exists so the site can be INSTALLED as
-// an app (home-screen / desktop shortcut). It deliberately caches NOTHING: every
-// request still goes to the network, so a new deploy reaches users at once.
+// an app (home-screen / desktop shortcut). Pages and code are NEVER cached: every
+// such request goes to the network, so a new deploy reaches users at once.
 // Only a page navigation gets a tiny offline message when there is no internet.
+//
+// The ONE exception (2026-10-22): the heavy game files — 3D models and character
+// pictures under /mb3d, /qq/c3d, /qq/char, /mart. A file there never changes under the
+// same URL (a new version gets a new name or ?v=), so they are kept on the device
+// (cache-first). A classroom board then opens Math Battle / Qaz Quiz instantly
+// instead of downloading ~35 MB every lesson. «Құрылғыға жүктеу» fills it in advance.
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 
@@ -10,9 +16,27 @@ const OFFLINE = `<!doctype html><html lang="kk"><head><meta charset="utf-8"><met
 h1{font-size:20px;margin:0 0 8px}p{margin:0 0 18px;color:#047857}button{border:0;border-radius:12px;background:#047857;color:#fff;font-weight:700;padding:12px 22px;font-size:15px}</style></head>
 <body><div><h1>Интернет байланысы жоқ</h1><p>Байланысты тексеріп, қайта көріңіз.</p><button onclick="location.reload()">Қайта жүктеу</button></div></body></html>`;
 
+const ASSETS = "qt-assets-v1";
+const HEAVY = /^\/(mb3d|qq\/c3d|qq\/char|mart)\//;
+
 self.addEventListener("fetch", (e) => {
-  if (e.request.mode !== "navigate") return; // everything else: the browser as usual
-  e.respondWith(
-    fetch(e.request).catch(() => new Response(OFFLINE, { headers: { "Content-Type": "text/html; charset=utf-8" } })),
-  );
+  const req = e.request;
+  if (req.mode === "navigate") {
+    e.respondWith(
+      fetch(req).catch(() => new Response(OFFLINE, { headers: { "Content-Type": "text/html; charset=utf-8" } })),
+    );
+    return;
+  }
+  if (req.method !== "GET" || req.headers.has("range")) return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin || !HEAVY.test(url.pathname)) return; // the browser as usual
+  e.respondWith(caches.open(ASSETS).then(async (cache) => {
+    const hit = await cache.match(req);
+    if (hit) return hit;
+    const res = await fetch(req);
+    // only a real file: the SPA fallback answers a missing path with index.html
+    const type = res.headers.get("content-type") || "";
+    if (res.status === 200 && !type.includes("text/html")) cache.put(req, res.clone()).catch(() => {});
+    return res;
+  }).catch(() => fetch(req))); // storage refused: just the network
 });
