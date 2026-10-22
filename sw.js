@@ -3,11 +3,12 @@
 // such request goes to the network, so a new deploy reaches users at once.
 // Only a page navigation gets a tiny offline message when there is no internet.
 //
-// The ONE exception (2026-10-22): the heavy game files — 3D models and character
-// pictures under /mb3d, /qq/c3d, /qq/char, /mart. A file there never changes under the
-// same URL (a new version gets a new name or ?v=), so they are kept on the device
-// (cache-first). A classroom board then opens Math Battle / Qaz Quiz instantly
-// instead of downloading ~35 MB every lesson. «Құрылғыға жүктеу» fills it in advance.
+// The ONE exception (2026-10-22): game MEDIA — .glb models (with their animations)
+// and .webp pictures under the game folders below. A file there never changes under
+// the same URL (a new version gets a new name or ?v=), so they are kept on the device
+// (cache-first). A classroom board then opens the games instantly instead of
+// downloading ~35 MB every lesson. Installing the app fills it in advance.
+// Nothing executable is ever stored: no JS, no HTML, no SVG (owner: platform security).
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 
@@ -17,7 +18,8 @@ h1{font-size:20px;margin:0 0 8px}p{margin:0 0 18px;color:#047857}button{border:0
 <body><div><h1>Интернет байланысы жоқ</h1><p>Байланысты тексеріп, қайта көріңіз.</p><button onclick="location.reload()">Қайта жүктеу</button></div></body></html>`;
 
 const ASSETS = "qt-assets-v1";
-const HEAVY = /^\/(mb3d|qq\/c3d|qq\/char|mart)\//;
+// same allow-list as src/lib/offline-assets.ts
+const HEAVY = /^\/(mb3d\/m|mart|qq\/c3d|qq\/char|qq\/ul|qq\/games|qq\/themes)\/([\w-]+\/)?[\w.-]+\.(glb|webp)$/;
 
 self.addEventListener("fetch", (e) => {
   const req = e.request;
@@ -36,7 +38,7 @@ self.addEventListener("fetch", (e) => {
     const res = await fetch(req);
     // only a real file: the SPA fallback answers a missing path with index.html
     const type = res.headers.get("content-type") || "";
-    if (res.status === 200 && !type.includes("text/html")) cache.put(req, res.clone()).catch(() => {});
+    if (res.status === 200 && !/html|javascript/.test(type)) cache.put(req, res.clone()).catch(() => {});
     return res;
   }).catch(() => fetch(req))); // storage refused: just the network
 });
