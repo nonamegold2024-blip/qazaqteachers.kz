@@ -19,7 +19,7 @@ h1{font-size:20px;margin:0 0 8px}p{margin:0 0 18px;color:#047857}button{border:0
 
 const ASSETS = "qt-assets-v1";
 // same allow-list as src/lib/offline-assets.ts
-const HEAVY = /^\/(mb3d\/m|mart|qq\/c3d|qq\/char|qq\/ul|qq\/games|qq\/themes)\/([\w-]+\/)?[\w.-]+\.(glb|webp)$/;
+const HEAVY = /^\/(mb3d\/m|mart|lab3d|qq\/c3d|qq\/char|qq\/ul|qq\/games|qq\/themes)\/([\w-]+\/)?[\w.-]+\.(glb|webp)$/;
 
 self.addEventListener("fetch", (e) => {
   const req = e.request;

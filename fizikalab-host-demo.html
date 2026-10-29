@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FizikaLab host demo</title>
+<style>
+  :root { --ink: #0f172a; --line: #cbd5e1; --bg: #f8fafc; }
+  body { margin: 0; font: 15px/1.4 system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+  header { padding: 12px 16px; border-bottom: 1px solid var(--line); background: #fff; }
+  main { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
+  section { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px; min-width: 0; }
+  iframe { width: 100%; height: 620px; border: 1px solid var(--line); border-radius: 8px; }
+  button { font: inherit; padding: 6px 10px; margin: 2px; border-radius: 8px; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+  pre { height: 180px; overflow: auto; background: #0f172a; color: #e2e8f0; padding: 8px; border-radius: 8px; font-size: 12px; }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <b>FizikaLab — host demo.</b> Екі iframe бір бетте: әрқайсысының өз <code>instanceId</code>-і бар, хабарлар араласпайды.
+  Хаттама: <code>docs/integration/README.md</code>.
+</header>
+<main>
+  <section id="A"></section>
+  <section id="B"></section>
+</main>
+<script>
+"use strict";
+// Host side of protocol v1. The iframe URL carries instance= and origin=; we only accept
+// messages whose source is that iframe AND whose origin is the lab's origin.
+const LAB_ORIGIN = location.origin; // same deploy in this demo; set to the lab's real origin when hosting elsewhere
+const PROTOCOL = 1;
+
+function mount(el, instanceId, moduleId, extra) {
+  const src = `${LAB_ORIGIN}/fizikalab/${moduleId}?embed=1&instance=${instanceId}&origin=${encodeURIComponent(location.origin)}${extra || ""}`;
+  el.innerHTML = `
+    <div><b>${instanceId}</b> · ${moduleId}</div>
+    <div class="ctl"></div>
+    <iframe title="FizikaLab ${moduleId}" src="${src}" allow="fullscreen"></iframe>
+    <pre></pre>`;
+  const frame = el.querySelector("iframe");
+  const log = el.querySelector("pre");
+  const pending = new Map();
+  let n = 0;
+  const write = (s) => { log.textContent = `${new Date().toLocaleTimeString()} ${s}\n` + log.textContent.slice(0, 6000); };
+
+  function send(type, payload) {
+    const requestId = `${instanceId}-${++n}`;
+    frame.contentWindow.postMessage({ protocolVersion: PROTOCOL, instanceId, requestId, type, payload }, LAB_ORIGIN);
+    write(`→ ${type} ${payload ? JSON.stringify(payload) : ""}`);
+    return new Promise((resolve) => {
+      const t = setTimeout(() => { pending.delete(requestId); write(`✗ ${type}: timeout 5 s`); resolve(null); }, 5000);
+      pending.set(requestId, (msg) => { clearTimeout(t); resolve(msg); });
+    });
+  }
+
+  window.addEventListener("message", (e) => {
+    if (e.source !== frame.contentWindow || e.origin !== LAB_ORIGIN) return;
+    const m = e.data;
+    if (!m || m.protocolVersion !== PROTOCOL || m.instanceId !== instanceId) return;
+    if (m.type === "response" && pending.has(m.requestId)) {
+      pending.get(m.requestId)(m);
+      pending.delete(m.requestId);
+      write(`← response ${m.payload.ok ? "ok" : "ERROR " + JSON.stringify(m.payload.error)}`);
+      return;
+    }
+    if (m.type === "ready") { write(`← ready ${m.payload.moduleId} (${m.payload.kind})`); send("init"); return; }
+    if (m.type === "stateChanged") { el.dataset.state = JSON.stringify(m.payload.obs); return; }
+    write(`← ${m.type} ${JSON.stringify(m.payload).slice(0, 160)}`);
+  });
+
+  const ctl = el.querySelector(".ctl");
+  const btn = (label, fn) => { const b = document.createElement("button"); b.textContent = label; b.onclick = fn; ctl.appendChild(b); };
+  btn("play", () => send("play"));
+  btn("pause", () => send("pause"));
+  btn("reset", () => send("reset"));
+  btn("setParameters (жарамды)", () => send("setParameters", { params: moduleId === "thin-lens" ? { do: 0.15 } : { F: 12 } }));
+  btn("setParameters (диапазоннан тыс)", () => send("setParameters", { params: moduleId === "thin-lens" ? { do: 99 } : { m: -1 } }));
+  btn("белгісіз команда", () => send("eval", { code: "alert(1)" }));
+  btn("exportState", async () => { const r = await send("exportState"); if (r && r.payload.ok) { el.dataset.saved = JSON.stringify(r.payload.payload); write(`  сақталды: ${el.dataset.saved.length} таңба`); } });
+  btn("importState", () => el.dataset.saved ? send("importState", { data: JSON.parse(el.dataset.saved) }) : write("алдымен exportState"));
+  btn("dispose", () => send("dispose"));
+}
+
+mount(document.getElementById("A"), "demoA", "newton-friction", "&mode=free");
+mount(document.getElementById("B"), "demoB", "thin-lens", "&mode=present");
+</script>
+</body>
+</html>

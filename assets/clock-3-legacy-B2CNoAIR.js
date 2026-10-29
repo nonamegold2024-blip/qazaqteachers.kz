@@ -1,0 +1,1 @@
+System.register(["./createLucideIcon-legacy-DQFZMyhP.js"],function(e,c){var t;return{setters:[function(e){t=e.t}],execute:function(){e("t",t("clock-3",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"M12 6v6h4",key:"135r8i"}]]))}}});
