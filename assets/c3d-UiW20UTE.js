@@ -1,0 +1,1 @@
+import{t as e}from"./Gltf-CEo40SsM.js";import{v as t}from"./teams-DBJtasag.js";var n=e=>`/qq/c3d/${e}.glb?v=3`,r=`/qq/c3d/podium.glb?v=2`,i=`/qq/c3d/medals.glb?v=2`,a=`/qq/c3d/cup.glb?v=2`;function o(o){for(let t of[r,i,a])e.preload(t);for(let r of o){let i=t(r);i.model&&e.preload(n(i.id))}}export{a as CUP_GLB,i as MEDALS_GLB,r as PODIUM_GLB,n as charUrl,o as preloadPodium};
