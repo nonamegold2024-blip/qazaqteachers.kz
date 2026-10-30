@@ -38,7 +38,43 @@
       rel="stylesheet"
     />
     <title>Qazaq Teachers AI — мұғалімдерге арналған AI платформа</title>
-    <script type="module" crossorigin src="/assets/index-BIedOLgi.js"></script>
+    <link rel="preload" as="image" href="/brand/q-mark-v1.webp" />
+    <!-- Brand loader. Lives here (not in index.css) so the very first paint, before
+         the JS bundle arrives, already shows it; React's BrandLoader reuses these
+         classes. Boards: no filter/mask/blur — only transform + opacity animate. -->
+    <style>
+      body { margin:0; }
+      .qt-boot { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; min-height:100vh; min-height:100dvh;
+        background: radial-gradient(ellipse 60% 50% at 50% 42%, rgba(34,197,94,.16), transparent 70%), linear-gradient(160deg,#f3faf6,#e8f4ee 60%,#f6f1e2);
+        font-family: Inter, system-ui, sans-serif; }
+      .dark .qt-boot { background: radial-gradient(ellipse 60% 50% at 50% 42%, rgba(34,197,94,.20), transparent 70%), linear-gradient(160deg,#06231c,#04161a); }
+      .qt-boot--inline { min-height:60vh; background:none; gap:14px; opacity:0; animation: qt-in .35s ease .25s forwards; }
+      .qt-boot__orb { position:relative; width:132px; height:132px; display:grid; place-items:center; }
+      .qt-boot--inline .qt-boot__orb { width:84px; height:84px; }
+      .qt-boot__orb > svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+      .qt-boot__arc { animation: qt-spin 1.4s cubic-bezier(.55,.15,.45,.85) infinite; }
+      .qt-boot__orbit { animation: qt-spin 9s linear infinite reverse; }
+      .qt-boot__halo { position:absolute; inset:14%; border-radius:50%; background: radial-gradient(circle, rgba(250,204,21,.28), rgba(34,197,94,.10) 55%, transparent 72%); animation: qt-breathe 1.6s ease-in-out infinite alternate; }
+      .qt-boot__mark { position:relative; width:52%; height:auto; animation: qt-breathe 1.6s ease-in-out infinite alternate; }
+      .qt-boot__word { font: 800 22px/1 Nunito, Inter, sans-serif; letter-spacing:.01em; color:#16a34a; text-shadow: 0 1px 0 #0f7a33, 0 2px 0 #0b5e27, 0 6px 12px rgba(22,163,74,.25); opacity:0; animation: qt-rise .6s ease .15s forwards; }
+      .qt-boot__word b { color:#1e2a4a; text-shadow: 0 1px 0 #0f172a, 0 2px 0 #0b1120, 0 6px 12px rgba(15,23,42,.18); }
+      .dark .qt-boot__word b { color:#e8eefc; text-shadow: 0 1px 0 #94a3b8, 0 2px 0 #64748b, 0 6px 12px rgba(0,0,0,.4); }
+      .qt-boot__dots { display:flex; gap:7px; margin-top:-8px; }
+      .qt-boot__dots i { width:7px; height:7px; border-radius:50%; background:#d4a017; animation: qt-dot 1.2s ease-in-out infinite; }
+      .qt-boot__dots i:nth-child(2) { background:#22c55e; animation-delay:.15s; }
+      .qt-boot__dots i:nth-child(3) { background:#d4a017; animation-delay:.3s; }
+      @keyframes qt-spin { to { transform: rotate(360deg); } }
+      @keyframes qt-breathe { from { transform: scale(.94); } to { transform: scale(1.04); } }
+      @keyframes qt-rise { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
+      @keyframes qt-in { to { opacity:1; } }
+      @keyframes qt-dot { 0%,80%,100% { transform: scale(.55); opacity:.45; } 40% { transform: scale(1); opacity:1; } }
+      .qt-boot__arc, .qt-boot__orbit { transform-origin: 60px 60px; transform-box: view-box; }
+      @media (prefers-reduced-motion: reduce) {
+        .qt-boot__orbit, .qt-boot__halo, .qt-boot__mark, .qt-boot__dots i { animation: none; }
+        .qt-boot__arc { animation-duration: 2.4s; }
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-DMhEEYgJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/classPrivateFieldGet2-CB7J8LIR.js">
     <link rel="modulepreload" crossorigin href="/assets/chunk-CMxvf4Kt.js">
     <link rel="modulepreload" crossorigin href="/assets/preload-helper-zJ_50EbN.js">
@@ -50,14 +86,36 @@
     <link rel="modulepreload" crossorigin href="/assets/createLucideIcon-DM-NtTQB.js">
     <link rel="modulepreload" crossorigin href="/assets/react-dom-Dr72zIxC.js">
     <link rel="modulepreload" crossorigin href="/assets/jsx-runtime-sLPvdpSW.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Dx_9LB72.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-C_dg-Rp-.css">
     <script type="module">import'data:text/javascript,if(!import.meta.resolve)throw Error("import.meta.resolve not supported")';import.meta.url;import("_").catch(()=>1);(async function*(){})().next();window.__vite_is_modern_browser=true</script>
     <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="qt-boot" role="status" aria-label="Жүктелуде…">
+        <div class="qt-boot__orb">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs>
+              <linearGradient id="qt-boot-g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fde68a" /><stop offset=".45" stop-color="#d4a017" /><stop offset="1" stop-color="#16a34a" />
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="54" stroke="rgba(22,163,74,.14)" stroke-width="3" fill="none" />
+            <g class="qt-boot__orbit"><circle cx="60" cy="60" r="44" stroke="#d4a017" stroke-opacity=".45" stroke-width="1.5" stroke-dasharray="1 7" stroke-linecap="round" fill="none" /></g>
+            <g class="qt-boot__arc">
+              <circle cx="60" cy="60" r="54" stroke="url(#qt-boot-g)" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="110 240" fill="none" />
+              <circle cx="35.75" cy="108.25" r="4.5" fill="#fde68a" stroke="#d4a017" stroke-width="1.5" />
+            </g>
+          </svg>
+          <div class="qt-boot__halo"></div>
+          <img class="qt-boot__mark" src="/brand/q-mark-v1.webp" alt="" />
+        </div>
+        <div class="qt-boot__word">Qazaq <b>Teachers AI</b></div>
+        <div class="qt-boot__dots"><i></i><i></i><i></i></div>
+      </div>
+    </div>
     <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
     <script nomodule crossorigin id="vite-legacy-polyfill" src="/assets/polyfills-legacy-cxoZmC9H.js"></script>
-    <script nomodule crossorigin id="vite-legacy-entry" data-src="/assets/index-legacy-B7VThlRu.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+    <script nomodule crossorigin id="vite-legacy-entry" data-src="/assets/index-legacy-ZzglbsG6.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
   </body>
 </html>
