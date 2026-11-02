@@ -1,0 +1,1 @@
+System.register(["./store-legacy-Vc_qST0n.js"],function(e,t){var n,i;return e({n:function(e){const t=e.topic,o=Promise.race([n.removeChannel(e),new Promise(e=>setTimeout(e,3e3))]);i.set(t,o),o.finally(()=>{i.get(t)===o&&i.delete(t)})},t:async function(e){await i.get(`realtime:${e}`)}}),{setters:[function(e){n=e.n}],execute:function(){i=new Map}}});

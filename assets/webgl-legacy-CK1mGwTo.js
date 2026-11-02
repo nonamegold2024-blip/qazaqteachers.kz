@@ -1,0 +1,1 @@
+System.register([],function(t,e){var n;return t("t",function(){if(void 0!==n)return n;try{const t=document.createElement("canvas");n=!(!t.getContext("webgl2")&&!t.getContext("webgl"))}catch{n=!1}return n}),{setters:[],execute:function(){}}});

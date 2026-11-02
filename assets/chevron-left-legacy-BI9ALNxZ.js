@@ -1,0 +1,1 @@
+System.register(["./createLucideIcon-legacy-DQFZMyhP.js"],function(e,t){var n;return{setters:[function(e){n=e.t}],execute:function(){e("t",n("chevron-left",[["path",{d:"m15 18-6-6 6-6",key:"1wnfg3"}]]))}}});
