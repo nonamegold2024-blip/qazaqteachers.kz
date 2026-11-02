@@ -1,0 +1,1 @@
+var e=5*36e5;function t(t=0){return new Date(Date.now()+e-t*864e5).toISOString().slice(0,10)}export{t};
