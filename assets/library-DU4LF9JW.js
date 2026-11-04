@@ -1,0 +1,1 @@
+var e=/\d+\s*(сұрақ|вопрос)\S*:\s*\d+\s*(жеңіл|лёгк|легк)/i;function t(t){return e.test(t.description??``)}export{t};

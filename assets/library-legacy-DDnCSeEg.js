@@ -1,0 +1,1 @@
+System.register([],function(t,e){var n;return t("t",function(t){return n.test(t.description??"")}),{setters:[],execute:function(){n=/\d+\s*(сұрақ|вопрос)\S*:\s*\d+\s*(жеңіл|лёгк|легк)/i}}});
