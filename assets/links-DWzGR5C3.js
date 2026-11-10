@@ -1,0 +1,1 @@
+var e=e=>`/app/library/practice/${e}`,t=e=>e.id===`modo`?`ББЖМ (МОДО)`:e.id===`mma`?`ММА`:e.short;function n(t){return`/run/exam?${new URLSearchParams({f:t.format,a:t.area,g:String(t.grade),l:t.lang,m:t.mode,back:e(t.format)})}`}export{e as n,n as r,t};

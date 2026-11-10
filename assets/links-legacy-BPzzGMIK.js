@@ -1,0 +1,1 @@
+System.register([],function(r,a){var e;return r("r",function(r){return`/run/exam?${new URLSearchParams({f:r.format,a:r.area,g:String(r.grade),l:r.lang,m:r.mode,back:e(r.format)})}`}),{setters:[],execute:function(){r("n",e=r=>`/app/library/practice/${r}`),r("t",r=>"modo"===r.id?"ББЖМ (МОДО)":"mma"===r.id?"ММА":r.short)}}});
