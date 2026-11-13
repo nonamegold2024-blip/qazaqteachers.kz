@@ -1,0 +1,1 @@
+System.register(["./store-legacy-8inwDULR.js"],function(e,t){var n,i;return e({n:function(e){const t=e.topic,s=Promise.race([n.removeChannel(e),new Promise(e=>setTimeout(e,3e3))]);i.set(t,s),s.finally(()=>{i.get(t)===s&&i.delete(t)})},t:async function(e){await i.get(`realtime:${e}`)}}),{setters:[function(e){n=e.s}],execute:function(){i=new Map}}});

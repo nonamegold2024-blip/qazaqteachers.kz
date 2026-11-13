@@ -1,0 +1,1 @@
+import{s as e}from"./store-DQu1A59o.js";var t=new Map;function n(n){let r=n.topic,i=Promise.race([e.removeChannel(n),new Promise(e=>setTimeout(e,3e3))]);t.set(r,i),i.finally(()=>{t.get(r)===i&&t.delete(r)})}async function r(e){await t.get(`realtime:${e}`)}export{n,r as t};
