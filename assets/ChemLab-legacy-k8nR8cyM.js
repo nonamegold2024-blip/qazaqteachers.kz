@@ -1,0 +1,1 @@
+System.register(["./jsx-runtime-legacy--q19JXeY.js","./registry-legacy-t8_onqTu.js","./FizikaLab-legacy-_aFjo6uh.js"],function(t,e){var n,i,r,s;return t("default",function(t){return(0,s.jsx)(r,{set:i,...t})}),{setters:[function(t){n=t.t},function(t){i=t.t},function(t){r=t.LabHome}],execute:function(){s=n()}}});
