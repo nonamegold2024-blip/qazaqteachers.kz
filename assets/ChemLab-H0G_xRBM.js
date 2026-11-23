@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-sLPvdpSW.js";import{t}from"./registry-8pLsp7uD.js";import{LabHome as n}from"./FizikaLab-9InwJDst.js";var r=e();function i(e){return(0,r.jsx)(n,{set:t,...e})}export{i as default};
