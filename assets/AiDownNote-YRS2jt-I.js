@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-sLPvdpSW.js";import{K as t,Ut as n,q as r}from"./index-BnRbnL1e.js";var i=e();function a({className:e=``}){let a=n(),o=r();return o?(0,i.jsx)(`p`,{role:`status`,className:`text-center text-xs font-semibold leading-snug text-rose-600 dark:text-rose-400 ${e}`,children:t(a,o)}):null}export{a as t};
