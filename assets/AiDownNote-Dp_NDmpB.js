@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-sLPvdpSW.js";import{Zt as t,nt as n,tt as r}from"./index-Dx1vGzNx.js";var i=e();function a({className:e=``}){let a=t(),o=n();return o?(0,i.jsx)(`p`,{role:`status`,className:`text-center text-xs font-semibold leading-snug text-rose-600 dark:text-rose-400 ${e}`,children:r(a,o)}):null}export{a as t};
